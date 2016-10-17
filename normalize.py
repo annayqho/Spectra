@@ -1,5 +1,7 @@
 """ Normalize a spectrum """
 
+import numpy as np
+
 
 def gaussian_weight_matrix(wl, L):
     """ Matrix of Gaussian weights 
