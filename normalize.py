@@ -66,4 +66,4 @@ def normalize(wl, flux, ivar, L):
     """
     smoothed_spec = smooth_spec(wl, flux, ivar, L)
     normalized_spec = flux / smoothed_spec
-    return flux
+    return normalized_spec
