@@ -1,6 +1,7 @@
 """ Normalize a spectrum """
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def gaussian_weight_matrix(wl, L):
