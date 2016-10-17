@@ -38,8 +38,8 @@ def smooth_spec(wl, flux, ivar, L):
         smoothed flux values
     """
     w = gaussian_weight_matrix(wl, L)
-    bot = np.dot(ivars, w.T)
-    top = np.dot(fluxes*ivars, w.T)
+    bot = np.dot(ivar, w.T)
+    top = np.dot(flux*ivar, w.T)
     bad = bot == 0
     smoothed = np.zeros(top.shape)
     smoothed[~bad] = top[~bad] / bot[~bad]
