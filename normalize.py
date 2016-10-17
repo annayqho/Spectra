@@ -65,5 +65,6 @@ def normalize(wl, flux, ivar, L):
     flux: normalized spectrum
     """
     smoothed_spec = smooth_spec(wl, flux, ivar, L)
-    normalized_spec = flux / smoothed_spec
-    return normalized_spec
+    norm_flux = flux / smoothed_spec
+    norm_ivar = ivar * smoothed_spec**2
+    return norm_flux, norm_ivar
