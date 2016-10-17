@@ -18,7 +18,7 @@ def gaussian_weight_matrix(wl, L):
     return np.exp(-0.5*(wl[:,None]-wl[None,:])**2/L**2)
 
 
-def smooth_spec(wl, flux, ivar):
+def smooth_spec(wl, flux, ivar, L):
     """ Smooth a spectrum with a running Gaussian
 
     Parameters
@@ -62,6 +62,6 @@ def normalize(wl, flux, ivar, L):
     ------
     flux: normalized spectrum
     """
-    smoothed_spec = smooth_spec(wl, flux, ivar)
+    smoothed_spec = smooth_spec(wl, flux, ivar, L)
     normalized_spec = flux / smoothed_spec
     return flux
