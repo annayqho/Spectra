@@ -28,11 +28,10 @@ def plot_spectrum(wl, flux, ivar, min_wl, max_wl):
     plt.ylim(min(flux[choose]), max(flux[choose]))
     plt.xlim(min_wl, max_wl)
     plt.xlabel("Wavelength $\lambda (\AA)$", fontsize=20)
-    plt.ylabel("Flux", fontsize=20)
+    plt.ylabel("Flux [erg/s/cm${}^2/\AA$]", fontsize=20)
     plt.tick_params(axis='x', labelsize=20)
     plt.tick_params(axis='y', labelsize=20)
     plt.tight_layout()
-    plt.show()
     return fig
 
 
@@ -45,9 +44,9 @@ def fit_gaussian(x, y, center):
     return xvals, g(xvals)+1
 
 
-def fit_double_gaussian(x, y):
-    g1 = models.Gaussian1D(amplitude=-1., mean=4500, stddev=1.)
-    g2 = models.Gaussian1D(amplitude=-1., mean=4540, stddev=1.)
+def fit_double_gaussian(x, y, mean1, mean2):
+    g1 = models.Gaussian1D(amplitude=-1., mean=mean1, stddev=1.)
+    g2 = models.Gaussian1D(amplitude=-1., mean=mean2, stddev=1.)
     g_init = g1 + g2
     fit_g = fitting.LevMarLSQFitter()
     g = fit_g(g_init, x, y)
