@@ -22,7 +22,7 @@ def load_data(filename):
 def plot_spectrum(wl, flux, ivar, min_wl, max_wl):
     err = 1/np.sqrt(ivar)
     fig = plt.figure(figsize=(10,4))
-    plt.step(wl, flux, where='mid', c='k', lw=0.5)
+    plt.step(wl, flux, where='mid', c='k', lw=0.5, label='_none')
     #plt.fill_between(wl, flux-err, flux+err, color='k', alpha=0.2)
     choose = np.logical_and(wl > min_wl, wl < max_wl)
     plt.ylim(min(flux[choose]), max(flux[choose]))
