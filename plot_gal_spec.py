@@ -19,20 +19,18 @@ def load_data(filename):
     return wl, flux, err
 
 
-def plot_spectrum(wl, flux, ivar, min_wl, max_wl):
+def plot_spectrum(ax, wl, flux, ivar, min_wl, max_wl):
     err = 1/np.sqrt(ivar)
-    fig = plt.figure(figsize=(10,4))
-    plt.step(wl, flux, where='mid', c='k', lw=0.5, label='_none')
+    ax.step(wl, flux, where='mid', c='k', lw=0.5, label='_none')
     #plt.fill_between(wl, flux-err, flux+err, color='k', alpha=0.2)
     choose = np.logical_and(wl > min_wl, wl < max_wl)
-    plt.ylim(min(flux[choose]), max(flux[choose]))
-    plt.xlim(min_wl, max_wl)
-    plt.xlabel("Wavelength $\lambda (\AA)$", fontsize=20)
-    plt.ylabel("Flux [erg/s/cm${}^2/\AA$]", fontsize=20)
-    plt.tick_params(axis='x', labelsize=20)
-    plt.tick_params(axis='y', labelsize=20)
-    plt.tight_layout()
-    return fig
+    ax.set_ylim(min(flux[choose]), max(flux[choose]))
+    ax.set_xlim(min_wl, max_wl)
+    ax.set_xlabel("Wavelength $\lambda (\AA)$", fontsize=20)
+    ax.set_ylabel("Flux [erg/s/cm${}^2/\AA$]", fontsize=20)
+    ax.tick_params(axis='x', labelsize=20)
+    ax.tick_params(axis='y', labelsize=20)
+    #return fig
 
 
 def fit_gaussian(x, y, center):
